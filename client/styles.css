@@ -1,0 +1,324 @@
+body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding-bottom: 50px; }
+.list-group-item-danger { background:#ffebe9; }
+.table thead th { white-space: nowrap; }
+
+/* --- Add Dark Mode Styles --- */
+body.dark-mode {
+    background-color: #1a1a1a !important; /* Dark background, force override */
+    color: #e0e0e0;
+}
+
+body.dark-mode .text-muted {
+    color: #adb5bd !important; /* Improved contrast for muted text in dark mode */
+}
+
+body.dark-mode .bg-light {
+    background-color: #2a2a2a !important; /* Override light backgrounds */
+}
+
+body.dark-mode .card,
+body.dark-mode .modal-content {
+    background-color: #2c2c2c; /* Darker card/modal background */
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    border-color: #555;
+}
+body.dark-mode .form-control::placeholder {
+    color: #aaa;
+}
+
+body.dark-mode .list-group-item {
+    background-color: #333;
+    border-color: #444;
+    color: #e0e0e0;
+}
+body.dark-mode .list-group-item-danger {
+    background-color: #5c1f1f; /* Darker danger background */
+    color: #f8d7da;
+    border-color: #7c2c2c;
+}
+
+body.dark-mode .btn-primary {
+    background-color: #0d6efd; /* Keep primary color or adjust */
+    border-color: #0d6efd;
+}
+body.dark-mode .btn-secondary,
+body.dark-mode .btn-outline-secondary {
+    background-color: #555;
+    border-color: #666;
+    color: #fff;
+}
+body.dark-mode .btn-outline-secondary:hover {
+    background-color: #666;
+    border-color: #777;
+}
+ body.dark-mode .btn-outline-primary {
+    color: #6ca0fc;
+    border-color: #6ca0fc;
+}
+ body.dark-mode .btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+ body.dark-mode .btn-outline-danger {
+    color: #ff7b82;
+    border-color: #ff7b82;
+}
+ body.dark-mode .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+body.dark-mode .table {
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+body.dark-mode .table-light,
+body.dark-mode .table thead.table-light th {
+    background-color: #3a3a3a !important;
+    border-color: #555;
+    color: #f0f0f0;
+}
+
+body.dark-mode .table-bordered th,
+body.dark-mode .table-bordered td,
+body.dark-mode .table-bordered {
+    border-color: #444;
+}
+
+body.dark-mode .nav-tabs .nav-link {
+    color: #ccc;
+    border-color: #444 #444 #555;
+}
+body.dark-mode .nav-tabs .nav-link.active {
+    background-color: #2c2c2c; /* Match card background */
+    border-color: #444 #444 #2c2c2c;
+    color: #fff;
+}
+
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer {
+    border-color: #444;
+}
+body.dark-mode .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Make close button visible */
+}
+
+/* Style for the toggle button CONTAINER */
+#userControlsContainer {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1056; /* Above toasts */
+    display: flex; /* Arrange buttons horizontally */
+    gap: 5px;      /* Space between buttons */
+}
+
+/* Remove individual positioning from theme button */
+#themeToggleBtn, #adminThemeToggleBtn {
+ /* position: fixed; */ /* <-- Remove or comment out this */
+ /* top: 10px; */      /* <-- Remove or comment out this */
+ /* right: 10px; */     /* <-- Remove or comment out this */
+ /* z-index: 1056; */  /* <-- Remove or comment out this */
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* Style for the new logout button (optional, inherits size/padding) */
+#logoutBtn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* Footer specific styles if needed */
+footer.fixed-bottom {
+ /* background-color: rgba(255, 255, 255, 0.8); /* Example: Semi-transparent background */
+ /* Dark mode specific footer background */
+ /* body.dark-mode & { background-color: rgba(42, 42, 42, 0.8); } */
+}
+
+/* Optional: Adjust table-danger for dark mode if needed */
+body.dark-mode .table-danger,
+body.dark-mode .table-danger > th,
+body.dark-mode .table-danger > td {
+    background-color: #5c1f1f !important;
+    color: #f8d7da !important;
+    border-color: #7c2c2c !important;
+}
+
+.accordion-button .badge { font-size: 0.75rem; }
+
+/* Make task title look clickable */
+.task-title-clickable:hover {
+  text-decoration: underline;
+  color: #0d6efd;
+}
+
+/* Styles for comments in modal */
+#modalCommentList li {
+  line-height: 1.4;
+}
+#modalCommentList strong {
+    display: inline-block;
+    margin-bottom: 2px;
+}
+#modalCommentList p {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Dark mode adjustments for modal comments */
+body.dark-mode #modalCommentList {
+    color: #ccc;
+}
+body.dark-mode #modalCommentList li {
+    border-bottom-color: #444;
+}
+body.dark-mode #modalCommentList .text-muted {
+    color: #888 !important;
+}
+body.dark-mode #modalTaskDescription {
+    color: #bbb !important;
+}
+body.dark-mode .task-title-clickable:hover {
+  color: #6ca0fc;
+}
+
+/* Style for the clickable task title itself */
+.task-title-clickable {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/* Style for tasks/rows with unread comments */
+.task-unread-comments {
+  border-left: 4px solid #0dcaf0 !important; /* Bootstrap info color */
+  padding-left: calc(var(--bs-list-group-item-padding-x, 1rem) - 4px);
+}
+.task-unread-comments .task-title-clickable {
+    font-weight: bold;
+}
+
+/* Dark mode adjustment */
+body.dark-mode .task-unread-comments {
+     border-left-color: #3dd5f3 !important; /* Lighter info color */
+     padding-left: calc(var(--bs-list-group-item-padding-x, 1rem) - 4px);
+}
+
+/* Optional Badge styling */
+.unread-badge {
+    font-size: 0.65em;
+    padding: 0.2em 0.4em;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+body.dark-mode .unread-badge {
+    font-size: 0.65em;
+    padding: 0.2em 0.4em;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* Dark mode overrides for employee list in task modal */
+body.dark-mode #editTaskEmployeeList.dark-mode-override {
+    background-color: #f8f9fa !important; /* A light background */
+    color: #212529; /* Dark text for the light background */
+}
+
+body.dark-mode #editTaskEmployeeList.dark-mode-override .text-muted {
+     color: #6c757d !important; /* Standard muted text color */
+}
+
+/* Ensure labels inside are also dark */
+body.dark-mode #editTaskEmployeeList.dark-mode-override label.form-check-input {
+    color: #212529;
+}
+
+/* --- Employee Stats Chart Styles --- */
+#employeeStatsChart {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+#taskPane .card.mb-4 {
+    margin-bottom: 1.5rem;
+}
+body.dark-mode .spinner-border {
+    color: #e0e0e0;
+}
+
+#loginPane { max-width: 480px; }
+
+/* Ensure checkboxes in tables align nicely */
+.table td .form-check-input,
+.table th .form-check-input {
+    vertical-align: middle;
+    margin-top: 0; /* Override default margins if needed */
+}
+
+/* Increase checkbox size in employee task list */
+#taskListContainer .list-group-item .form-check-input {
+    width: 1.5em;  /* Adjust size as needed */
+    height: 1.5em; /* Adjust size as needed */
+    margin-top: 0.1em; /* Optional: Adjust vertical alignment slightly if needed */
+    margin-right: 0.5em !important; /* Add more space between checkbox and title */
+    cursor: pointer; /* Make it clear the checkbox itself is clickable */
+    vertical-align: middle; /* Align better with text */
+}
+
+/* Ensure label doesn't overlap enlarged checkbox */
+#taskListContainer .list-group-item .task-title-clickable {
+    vertical-align: middle; /* Align text with checkbox */
+}
+
+#adminModalTaskDescription,
+#modalTaskDescription,
+.task-description-text {
+  white-space: pre-wrap; /* Preserves whitespace and newlines, wraps text */
+  word-wrap: break-word; /* Ensures long words break to prevent overflow */
+}
+
+/* Style for task items TEMPORARILY when checkbox is checked by user */
+.list-group-item.task-checked {
+    background-color: #e9ecef; /* Light grey background for SELECTION */
+}
+
+body.dark-mode .list-group-item.task-checked {
+    background-color: #3a3a3a; /* Darker grey for SELECTION */
+}
+
+/* Ensure overdue still overrides checked style background */
+.list-group-item.task-checked.list-group-item-danger,
+body.dark-mode .list-group-item.task-checked.list-group-item-danger {
+   background-color: inherit; /* Let the danger background take precedence */
+}
+
+/* Style for tasks loaded as completed but not overdue */
+.list-group-item.task-completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+body.dark-mode .list-group-item.task-completed {
+    opacity: 0.6;
+}
+
+/* Ensure overdue danger style overrides completed style */
+.list-group-item.task-completed.list-group-item-danger {
+   text-decoration: none; /* Remove strikethrough when overdue */
+   opacity: 1;
+   background-color: #ffebe9; /* Ensure danger background shows */
+}
+body.dark-mode .list-group-item.task-completed.list-group-item-danger {
+   text-decoration: none;
+   opacity: 1;
+   background-color: #5c1f1f !important; /* Ensure danger background shows */
+} 

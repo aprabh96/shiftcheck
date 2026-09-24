@@ -1,0 +1,55 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: shiftcheck
+          MYSQL_USER: shiftcheck
+          MYSQL_PASSWORD: shiftcheck
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
+          --health-interval=5s --health-timeout=5s --health-retries=30
+    defaults:
+      run:
+        working-directory: server
+    env:
+      PORT: "3001"
+      DB_HOST: 127.0.0.1
+      DB_PORT: "3306"
+      DB_NAME: shiftcheck
+      DB_USER: shiftcheck
+      DB_PASS: shiftcheck
+      JWT_SECRET: ci-only-secret-0123456789abcdef0123456789abcdef
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+      - run: for f in $(git ls-files '*.js' | grep -v node_modules); do node --check "$f"; done
+        working-directory: .
+      - run: npm audit --omit=dev --audit-level=high
+      - run: ADMIN_PIN=246810 npm run create-admin -- --name Owner
+      - run: npm start > server.log 2>&1 &
+      - run: for i in $(seq 1 30); do curl -sf http://127.0.0.1:3001/api/employees/config && break; sleep 1; done
+      - run: SMOKE_BASE_URL=http://127.0.0.1:3001 SMOKE_ADMIN_PIN=246810 npm test
+      - if: failure()
+        run: cat server.log
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
